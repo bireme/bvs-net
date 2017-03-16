@@ -38,6 +38,13 @@
     $messages["en"]["connection.fail"] = "It was not possible to connect with the application. Please try later!";
 
     $texts = $messages[$lang];
+
+    $bclang = $lang;
+
+    if ( defined( 'POLYLANG_VERSION' ) ) {
+        $default_language = pll_default_language();
+        if ( $default_language == $lang ) $bclang = '';
+    }
 ?>
 <?php get_header(); ?>
     <style type = "text/css">
@@ -81,7 +88,7 @@
         <div class="level2">
             <div class="middle">
                 <div class="breadCrumb">
-                    <a href="/<?=$lang?>/">Home</a>
+                    <a href="/<?=$bclang?>">Home</a>
                     <span>/</span>
                     <a href="../php/bvsnet.php?lang=<?=$lang?>"><?=$texts["network"]?></a>
                     <? if ($network != "")  echo "&gt;" . $network;?>
